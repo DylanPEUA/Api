@@ -32,8 +32,12 @@ app.get("/health", (req, res) => {
 const port = process.env.PORT || 4000;
 
 // Connexion à la base MongoDB et démarrage serveur
-connectDB(process.env.MONGODB_URI).then(() => {
+async function startServer() {
+  await connectDB(process.env.MONGODB_URI);
+
   app.listen(port, () => {
     console.log(`🚀 API en ligne sur http://localhost:${port}`);
   });
-});
+}
+
+startServer();
