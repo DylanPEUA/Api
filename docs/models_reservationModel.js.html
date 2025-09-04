@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/reservationModel.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/reservationModel.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { getDB } from "../config/db.js";
+import { ObjectId } from "mongodb";
+
+const COLLECTION = "reservations";
+
+
+/**
+ * Crée une nouvelle réservation dans la base de données.
+ *
+ * @async
+ * @function createReservation
+ * @param {Object} reservation - Objet réservation
+ * @param {string} reservation.catwayId - ID du catway réservé
+ * @param {string} reservation.userId - ID de l'utilisateur
+ * @param {string} reservation.boatName - Nom du bateau
+ * @param {string|Date} reservation.arrivalDate - Date d'arrivée
+ * @param {string|Date} reservation.departureDate - Date de départ
+ * @param {string} [reservation.status="pending"] - Statut de la réservation
+ * @returns {Promise&lt;string>} ID de la réservation créée
+ */
+
+
+export async function createReservation({ catwayId, userId, boatName, arrivalDate, departureDate, status = "pending" }) {
+  const db = getDB();
+  const reservation = {
+    catwayId: new ObjectId(catwayId),
+    userId: new ObjectId(userId),
+    boatName,
+    arrivalDate: new Date(arrivalDate),
+    departureDate: new Date(departureDate),
+    status,
+    createdAt: new Date(),
+  };
+  const result = await db.collection(COLLECTION).insertOne(reservation);
+  return result.insertedId;
+}
+
+
+/**
+ * Récupère toutes les réservations.
+ *
+ * @async
+ * @function listReservations
+ * @returns {Promise&lt;Array&lt;Object>>} Liste de toutes les réservations
+ */
+
+
+export async function listReservations() {
+  const db = getDB();
+  return db.collection(COLLECTION).find().toArray();
+}
+
+
+/**
+ * Met à jour une réservation existante.
+ *
+ * @async
+ * @function updateReservation
+ * @param {string} id - ID de la réservation à mettre à jour
+ * @param {Object} data - Données à mettre à jour (catwayId, userId, boatName, dates, status, etc.)
+ * @returns {Promise&lt;Object>} Résultat de l'opération MongoDB
+ */
+
+
+export async function updateReservation(id, data) {
+  const db = getDB();
+  return db.collection(COLLECTION).updateOne(
+    { _id: new ObjectId(id) },
+    { $set: data }
+  );
+}
+
+
+/**
+ * Supprime une réservation existante.
+ *
+ * @async
+ * @function deleteReservation
+ * @param {string} id - ID de la réservation à supprimer
+ * @returns {Promise&lt;Object>} Résultat de l'opération MongoDB
+ */
+
+
+export async function deleteReservation(id) {
+  const db = getDB();
+  return db.collection(COLLECTION).deleteOne({ _id: new ObjectId(id) });
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addCatway">addCatway</a></li><li><a href="global.html#addReservation">addReservation</a></li><li><a href="global.html#adminRequired">adminRequired</a></li><li><a href="global.html#authRequired">authRequired</a></li><li><a href="global.html#checkPassword">checkPassword</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createCatway">createCatway</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteCatway">deleteCatway</a></li><li><a href="global.html#deleteReservation">deleteReservation</a></li><li><a href="global.html#deleteUser">deleteUser</a></li><li><a href="global.html#editCatway">editCatway</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#findUserByEmail">findUserByEmail</a></li><li><a href="global.html#getCatways">getCatways</a></li><li><a href="global.html#getDB">getDB</a></li><li><a href="global.html#getReservations">getReservations</a></li><li><a href="global.html#listCatways">listCatways</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listUsers">listUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeCatway">removeCatway</a></li><li><a href="global.html#removeReservation">removeReservation</a></li><li><a href="global.html#updateCatway">updateCatway</a></li><li><a href="global.html#updateReservation">updateReservation</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Sep 04 2025 21:30:47 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
