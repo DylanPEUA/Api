@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { connectDB } from "./config/db.js";
+import router from "./routes/index.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.get("/health", (req, res) => {
 });
 
 // Routes à ajouter (auth, catways, reservations...)
+app.use("/api", router);
 
 const port = process.env.PORT || 4000;
 
