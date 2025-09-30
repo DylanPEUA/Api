@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des Utilisateurs</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Gestion des Utilisateurs</h1>
+  <nav>
+    <a href="dashboard.html">Tableau de bord</a> |
+    <a href="/docs/index.html">Documentation API</a> |
+    <button id="logoutBtn">Se déconnecter</button>
+  </nav>
+
+  <h2>Ajouter un utilisateur</h2>
+  <form id="addUserForm">
+    <label>Nom : <input type="text" id="username" required></label>
+    <label>Email : <input type="email" id="email" required></label>
+    <label>Mot de passe : <input type="password" id="password" required></label>
+    <label>Rôle : 
+      <select id="role">
+        <option value="user">Utilisateur</option>
+        <option value="admin">Admin</option>
+      </select>
+    </label>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h2>Liste des utilisateurs</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="usersTable"></tbody>
+  </table>
+
+  <script type="module">
+  import { getToken, clearToken } from './js/auth.js';
+
+  const token = getToken();
+  if (!token) window.location.href = 'index.html';
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    clearToken();
+    window.location.href = 'index.html';
+  });
+
+  const tableBody = document.getElementById('usersTable');
+  const apiUrl = '/api/users';
+
+  async function fetchUsers() {
+    const res = await fetch(apiUrl, { headers: { 'Authorization': 'Bearer ' + token } });
+    if (!res.ok) throw new Error('Impossible de récupérer les utilisateurs');
+    const users = await res.json();
+    renderTable(users);
+  }
+
+  function renderTable(users) {
+    tableBody.innerHTML = '';
+    users.forEach(u => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${u.username}</td>
+        <td>${u.email}</td>
+        <td>
+          <input type="text" value="${u.role}" id="role-${u._id}">
+        </td>
+        <td>
+          <button onclick="updateUser('${u.email}', '${u._id}')">Modifier</button>
+          <button onclick="deleteUser('${u.email}')">Supprimer</button>
+        </td>
+      `;
+      tableBody.appendChild(tr);
+    });
+  }
+
+  window.updateUser = async function(email, id) {
+    const newRole = document.getElementById('role-' + id).value;
+    const res = await fetch(`${apiUrl}/${email}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify({ role: newRole })
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      alert(err.error || 'Erreur lors de la mise à jour');
+      return;
+    }
+    fetchUsers();
+  }
+
+  window.deleteUser = async function(email) {
+    if (!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) return;
+    const res = await fetch(`${apiUrl}/${email}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      alert(err.error || 'Erreur lors de la suppression');
+      return;
+    }
+    fetchUsers();
+  }
+
+  // Formulaire ajout utilisateur
+  const addForm = document.getElementById('addUserForm');
+  addForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
+
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify({ username, email, password, role })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      alert(err.error || 'Erreur lors de la création');
+      return;
+    }
+
+    addForm.reset();
+    fetchUsers();
+  });
+
+  // Chargement initial
+  fetchUsers();
+</script>

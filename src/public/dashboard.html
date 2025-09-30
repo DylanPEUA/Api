@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de bord - Russell Marina</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Tableau de bord</h1>
+
+  <nav>
+    <a href="catways.html">Catways</a> |
+    <a href="reservations.html">Réservations</a> |
+    <a href="users.html">Utilisateurs</a> |
+    <a href="/docs/index.html">Documentation API</a> |
+    <button id="logoutBtn">Se déconnecter</button>
+  </nav>
+
+  <section id="userInfo">
+    <p><strong>Nom :</strong> <span id="username"></span></p>
+    <p><strong>Email :</strong> <span id="email"></span></p>
+    <p><strong>Date :</strong> <span id="currentDate"></span></p>
+  </section>
+
+  <section id="reservationsSection">
+    <h2>Réservations en cours</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Catway</th>
+          <th>Bateau</th>
+          <th>Arrivée</th>
+          <th>Départ</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="reservationsTable"></tbody>
+    </table>
+  </section>
+
+  <script type="module">
+    import { getToken, clearToken, apiFetch } from './js/common.js';
+
+    const token = getToken();
+    if (!token) window.location.href = 'index.html';
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearToken();
+      window.location.href = 'index.html';
+    });
+
+    // Affichage des infos utilisateur
+    async function loadUserInfo() {
+      try {
+        const res = await apiFetch('/users/me'); // Assurez-vous d'avoir une route /users/me
+        document.getElementById('username').textContent = res.username;
+        document.getElementById('email').textContent = res.email;
+      } catch (err) {
+        alert("Erreur récupération utilisateur : " + err.message);
+      }
+    }
+
+    // Affichage date du jour
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+
+    // Chargement des réservations
+    async function loadReservations() {
+      try {
+        const reservations = await apiFetch('/reservations');
+        const tableBody = document.getElementById('reservationsTable');
+        tableBody.innerHTML = '';
+        reservations.forEach(r => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${r.catwayId}</td>
+            <td>${r.boatName}</td>
+            <td>${new Date(r.arrivalDate).toLocaleDateString()}</td>
+            <td>${new Date(r.departureDate).toLocaleDateString()}</td>
+            <td>${r.status}</td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      } catch (err) {
+        alert("Erreur chargement réservations : " + err.message);
+      }
+    }
+
+    // Initialisation
+    loadUserInfo();
+    loadReservations();
+  </script>
+</body>
+</html>
