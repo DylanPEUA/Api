@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des Réservations</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Gestion des Réservations</h1>
+
+  <nav>
+    <a href="dashboard.html">Tableau de bord</a> |
+    <a href="catways.html">Catways</a> |
+    <a href="users.html">Utilisateurs</a> |
+    <a href="/docs/index.html">Documentation API</a> |
+    <button id="logoutBtn">Se déconnecter</button>
+  </nav>
+
+  <h2>Ajouter une réservation</h2>
+  <form id="addReservationForm">
+    <label>Catway ID : <input type="text" id="catwayId" required></label>
+    <label>Nom du bateau : <input type="text" id="boatName" required></label>
+    <label>Date d'arrivée : <input type="date" id="arrivalDate" required></label>
+    <label>Date de départ : <input type="date" id="departureDate" required></label>
+    <label>Status :
+      <select id="status">
+        <option value="pending">En attente</option>
+        <option value="confirmed">Confirmée</option>
+        <option value="cancelled">Annulée</option>
+      </select>
+    </label>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h2>Liste des réservations</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Catway</th>
+        <th>Bateau</th>
+        <th>Arrivée</th>
+        <th>Départ</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="reservationsTable"></tbody>
+  </table>
+
+  <script type="module">
+    import { getToken, clearToken } from './js/common.js';
+    import { getReservations, createReservation, updateReservation, deleteReservation } from './js/reservations.js';
+
+    const token = getToken();
+    if (!token) window.location.href = 'index.html';
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearToken();
+      window.location.href = 'index.html';
+    });
+
+    const tableBody = document.getElementById('reservationsTable');
+
+    async function fetchAndRenderReservations() {
+      try {
+        const reservations = await getReservations();
+        tableBody.innerHTML = '';
+        reservations.forEach(r => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${r.catwayId}</td>
+            <td>${r.boatName}</td>
+            <td>${new Date(r.arrivalDate).toLocaleDateString()}</td>
+            <td>${new Date(r.departureDate).toLocaleDateString()}</td>
+            <td>
+              <select id="status-${r._id}">
+                <option value="pending" ${r.status === 'pending' ? 'selected' : ''}>En attente</option>
+                <option value="confirmed" ${r.status === 'confirmed' ? 'selected' : ''}>Confirmée</option>
+                <option value="cancelled" ${r.status === 'cancelled' ? 'selected' : ''}>Annulée</option>
+              </select>
+            </td>
+            <td>
+              <button onclick="updateReservationStatus('${r._id}')">Modifier</button>
+              <button onclick="deleteReservationEntry('${r._id}')">Supprimer</button>
+            </td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    window.updateReservationStatus = async function(id) {
+      const status = document.getElementById('status-' + id).value;
+      try {
+        await updateReservation(id, { status });
+        fetchAndRenderReservations();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    window.deleteReservationEntry = async function(id) {
+      if (!confirm('Voulez-vous vraiment supprimer cette réservation ?')) return;
+      try {
+        await deleteReservation(id);
+        fetchAndRenderReservations();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    const addForm = document.getElementById('addReservationForm');
+    addForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const catwayId = document.getElementById('catwayId').value;
+      const boatName = document.getElementById('boatName').value;
+      const arrivalDate = document.getElementById('arrivalDate').value;
+      const departureDate = document.getElementById('departureDate').value;
+      const status = document.getElementById('status').value;
+
+      try {
+        await createReservation({ catwayId, boatName, arrivalDate, departureDate, status });
+        addForm.reset();
+        fetchAndRenderReservations();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    // Chargement initial
+    fetchAndRenderReservations();
+  </script>
+</body>
+</html>

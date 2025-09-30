@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des Catways</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Gestion des Catways</h1>
+
+  <nav>
+    <a href="dashboard.html">Tableau de bord</a> |
+    <a href="/docs/index.html">Documentation API</a> |
+    <button id="logoutBtn">Se déconnecter</button>
+  </nav>
+
+  <h2>Ajouter un catway</h2>
+  <form id="addCatwayForm">
+    <label>Numéro : <input type="number" id="number" required></label>
+    <label>Type : <input type="text" id="type" required></label>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h2>Liste des catways</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="catwaysTable"></tbody>
+  </table>
+
+  <script type="module">
+    import { getToken, clearToken } from './js/common.js';
+    import { getCatways, createCatway, updateCatway, deleteCatway } from './js/catways.js';
+
+    const token = getToken();
+    if (!token) window.location.href = 'index.html';
+
+    // Déconnexion
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearToken();
+      window.location.href = 'index.html';
+    });
+
+    const tableBody = document.getElementById('catwaysTable');
+
+    async function fetchAndRenderCatways() {
+      try {
+        const catways = await getCatways();
+        tableBody.innerHTML = '';
+        catways.forEach(c => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${c.number}</td>
+            <td>${c.type}</td>
+            <td>
+              <select id="status-${c._id}">
+                <option value="available" ${c.status === 'available' ? 'selected' : ''}>Disponible</option>
+                <option value="occupied" ${c.status === 'occupied' ? 'selected' : ''}>Occupé</option>
+              </select>
+            </td>
+            <td>
+              <button onclick="updateCatwayStatus('${c._id}')">Modifier</button>
+              <button onclick="deleteCatwayEntry('${c._id}')">Supprimer</button>
+            </td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    window.updateCatwayStatus = async function(id) {
+      const status = document.getElementById('status-' + id).value;
+      try {
+        await updateCatway(id, { status });
+        fetchAndRenderCatways();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    window.deleteCatwayEntry = async function(id) {
+      if (!confirm('Voulez-vous vraiment supprimer ce catway ?')) return;
+      try {
+        await deleteCatway(id);
+        fetchAndRenderCatways();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    // Formulaire ajout catway
+    const addForm = document.getElementById('addCatwayForm');
+    addForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const number = document.getElementById('number').value;
+      const type = document.getElementById('type').value;
+
+      try {
+        await createCatway({ number, type });
+        addForm.reset();
+        fetchAndRenderCatways();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    // Chargement initial
+    fetchAndRenderCatways();
+  </script>
+</body>
+</html>

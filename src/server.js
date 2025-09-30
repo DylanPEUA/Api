@@ -6,9 +6,13 @@ import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { connectDB } from "./config/db.js";
 import router from "./routes/index.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 
 // Middlewares globaux
@@ -16,6 +20,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
