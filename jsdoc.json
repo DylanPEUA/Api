@@ -3,13 +3,12 @@
     "allowUnknownTags": true
   },
   "source": {
-    "include": ["src", "controllers", "models", "config", "middleware"],
+    "include": ["src"],
     "includePattern": ".js$",
-    "excludePattern": "(node_modules|docs)"
+    "excludePattern": "(node_modules|docs|views)"
   },
   "opts": {
     "destination": "docs",
-    "recurse": true,
-    "template": "default"
+    "recurse": true
   }
 }

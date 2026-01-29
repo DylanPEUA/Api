@@ -7,9 +7,9 @@ import jwt from "jsonwebtoken";
  * Vérifie que le token JWT est présent et valide dans l'en-tête Authorization.
  *
  * @function authRequired
- * @param {import("express").Request} req - Requête Express
- * @param {import("express").Response} res - Réponse Express
- * @param {import("express").NextFunction} next - Fonction pour passer au middleware suivant
+ * @param {Object} req - Requête Express
+ * @param {Object} res - Réponse Express
+ * @param {Function} next - Fonction pour passer au middleware suivant
  * @returns {void} Appelle next() si le token est valide, sinon renvoie une erreur 401 ou 403.
  */
 
@@ -34,9 +34,9 @@ export function authRequired(req, res, next) {
  * Vérifie que l'utilisateur connecté possède le rôle "admin".
  *
  * @function adminRequired
- * @param {import("express").Request} req - Requête Express (doit contenir req.user)
- * @param {import("express").Response} res - Réponse Express
- * @param {import("express").NextFunction} next - Fonction pour passer au middleware suivant
+ * @param {Object} req - Requête Express (doit contenir req.user)
+ * @param {Object} res - Réponse Express
+ * @param {Function} next - Fonction pour passer au middleware suivant
  * @returns {void} Appelle next() si l'utilisateur est admin, sinon renvoie une erreur 403.
  */
 
