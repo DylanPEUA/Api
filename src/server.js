@@ -8,12 +8,18 @@ import { connectDB } from "./config/db.js";
 import router from "./routes/index.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import { authRequired } from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const app = express();
+
+// Configuration du moteur de templates EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // Middlewares globaux
 app.use(express.json());
@@ -28,10 +34,22 @@ app.use(
   })
 );
 
+
 // Route test
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
+
+// Route protégée pour le tableau de bord (accessible uniquement à l'utilisateur connecté)
+app.get("/dashboard", authRequired, (req, res) => {
+  // On peut passer des infos utilisateur à la vue EJS
+  res.render("dashboard", { user: req.user });
+});
+
+
+// Servir la documentation JSDoc (tous les fichiers statiques)
+app.use("/docs", express.static(path.join(__dirname, "../docs")));
+
 
 // Routes à ajouter (auth, catways, reservations...)
 app.use("/api", router);

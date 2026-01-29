@@ -6,8 +6,8 @@ import { createCatway, listCatways, updateCatway, deleteCatway } from "../models
  *
  * @async
  * @function getCatways
- * @param {import("express").Request} req - Requête Express
- * @param {import("express").Response} res - Réponse Express
+ * @param {Object} req - Requête Express
+ * @param {Object} res - Réponse Express
  * @returns {Promise<void>} Envoie une réponse JSON contenant la liste des catways.
  */
 
@@ -23,11 +23,11 @@ export async function getCatways(req, res) {
  *
  * @async
  * @function addCatway
- * @param {import("express").Request} req - Requête Express contenant le body avec :
+ * @param {Object} req - Requête Express contenant le body avec :
  *   @param {number} req.body.number - Numéro du catway
  *   @param {string} req.body.status - Statut du catway ("available", "occupied", etc.)
  *   @param {string} req.body.type - Type du catway
- * @param {import("express").Response} res - Réponse Express
+ * @param {Object} res - Réponse Express
  * @returns {Promise<void>} Envoie une réponse JSON avec le message et l'ID du catway créé.
  */
 
@@ -44,10 +44,10 @@ export async function addCatway(req, res) {
  *
  * @async
  * @function editCatway
- * @param {import("express").Request} req - Requête Express contenant :
+ * @param {Object} req - Requête Express contenant :
  *   @param {string} req.params.id - ID du catway à modifier
  *   @param {object} req.body - Données à mettre à jour
- * @param {import("express").Response} res - Réponse Express
+ * @param {Object} res - Réponse Express
  * @returns {Promise<void>} Envoie une réponse JSON avec un message de confirmation.
  */
 
@@ -64,9 +64,9 @@ export async function editCatway(req, res) {
  *
  * @async
  * @function removeCatway
- * @param {import("express").Request} req - Requête Express contenant :
+ * @param {Object} req - Requête Express contenant :
  *   @param {string} req.params.id - ID du catway à supprimer
- * @param {import("express").Response} res - Réponse Express
+ * @param {Object} res - Réponse Express
  * @returns {Promise<void>} Envoie une réponse JSON avec un message de confirmation.
  */
 

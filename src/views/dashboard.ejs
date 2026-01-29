@@ -1,0 +1,28 @@
+<% /* Vue EJS pour le tableau de bord, accessible uniquement à l'utilisateur connecté */ %>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de bord - Russell Marina</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Tableau de bord</h1>
+  <nav>
+    <a href="/catways">Catways</a> |
+    <a href="/reservations">Réservations</a> |
+    <a href="/users">Utilisateurs</a> |
+    <a href="/docs/">Documentation de l'API</a> |
+    <form action="/api/auth/logout" method="post" style="display:inline"><button type="submit">Se déconnecter</button></form>
+  </nav>
+  <section id="userInfo">
+    <p><strong>Nom :</strong> <%= user?.username %></p>
+    <p><strong>Email :</strong> <%= user?.email %></p>
+    <p><strong>Rôle :</strong> <%= user?.role %></p>
+  </section>
+  <section id="reservationsSection">
+    <h2>Réservations en cours</h2>
+    <!-- À compléter côté serveur ou client -->
+  </section>
+</body>
+</html>

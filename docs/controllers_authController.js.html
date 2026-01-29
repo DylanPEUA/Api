@@ -35,8 +35,8 @@ import { createUser, findUserByEmail, checkPassword } from "../models/userModel.
  *
  * @async
  * @function register
- * @param {import("express").Request} req - Requête Express contenant le body avec username, email, password et role.
- * @param {import("express").Response} res - Réponse Express utilisée pour renvoyer le résultat.
+ * @param {Object} req - Requête Express contenant le body avec username, email, password et role.
+ * @param {Object} res - Réponse Express utilisée pour renvoyer le résultat.
  * @returns {Promise&lt;void>} Envoie une réponse JSON avec le message et l'ID utilisateur créé.
  * @throws {Error} Envoie une erreur 500 si la création échoue.
  */
@@ -61,8 +61,8 @@ export async function register(req, res) {
  *
  * @async
  * @function login
- * @param {import("express").Request} req - Requête Express contenant le body avec email et password.
- * @param {import("express").Response} res - Réponse Express utilisée pour renvoyer le token.
+ * @param {Object} req - Requête Express contenant le body avec email et password.
+ * @param {Object} res - Réponse Express utilisée pour renvoyer le token.
  * @returns {Promise&lt;void>} Envoie une réponse JSON avec le token JWT si la connexion est réussie.
  * @throws {Error} Envoie une erreur 400 si l'utilisateur n'existe pas ou si le mot de passe est incorrect. Envoie une erreur 500 si la connexion échoue.
  */
@@ -97,13 +97,13 @@ export async function login(req, res) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addCatway">addCatway</a></li><li><a href="global.html#addReservation">addReservation</a></li><li><a href="global.html#adminRequired">adminRequired</a></li><li><a href="global.html#authRequired">authRequired</a></li><li><a href="global.html#checkPassword">checkPassword</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createCatway">createCatway</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteCatway">deleteCatway</a></li><li><a href="global.html#deleteReservation">deleteReservation</a></li><li><a href="global.html#deleteUser">deleteUser</a></li><li><a href="global.html#editCatway">editCatway</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#findUserByEmail">findUserByEmail</a></li><li><a href="global.html#getCatways">getCatways</a></li><li><a href="global.html#getDB">getDB</a></li><li><a href="global.html#getReservations">getReservations</a></li><li><a href="global.html#listCatways">listCatways</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listUsers">listUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeCatway">removeCatway</a></li><li><a href="global.html#removeReservation">removeReservation</a></li><li><a href="global.html#updateCatway">updateCatway</a></li><li><a href="global.html#updateReservation">updateReservation</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addCatway">addCatway</a></li><li><a href="global.html#addReservation">addReservation</a></li><li><a href="global.html#adminRequired">adminRequired</a></li><li><a href="global.html#apiFetch">apiFetch</a></li><li><a href="global.html#authRequired">authRequired</a></li><li><a href="global.html#catwayValidation">catwayValidation</a></li><li><a href="global.html#checkPassword">checkPassword</a></li><li><a href="global.html#clearToken">clearToken</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createCatway">createCatway</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteCatway">deleteCatway</a></li><li><a href="global.html#deleteReservation">deleteReservation</a></li><li><a href="global.html#deleteUser">deleteUser</a></li><li><a href="global.html#editCatway">editCatway</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#findUserByEmail">findUserByEmail</a></li><li><a href="global.html#getCatways">getCatways</a></li><li><a href="global.html#getDB">getDB</a></li><li><a href="global.html#getReservations">getReservations</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#listCatways">listCatways</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listUsers">listUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginValidation">loginValidation</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#registerValidation">registerValidation</a></li><li><a href="global.html#removeCatway">removeCatway</a></li><li><a href="global.html#removeReservation">removeReservation</a></li><li><a href="global.html#reservationValidation">reservationValidation</a></li><li><a href="global.html#updateCatway">updateCatway</a></li><li><a href="global.html#updateReservation">updateReservation</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Sep 04 2025 21:30:47 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Jan 29 2026 12:54:12 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

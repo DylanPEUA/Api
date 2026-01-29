@@ -94,6 +94,258 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="catwayValidation"><span class="type-signature">(constant) </span>catwayValidation<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Validation pour la création d'un catway
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middleware_validationMiddleware.js.html">middleware/validationMiddleware.js</a>, <a href="middleware_validationMiddleware.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="loginValidation"><span class="type-signature">(constant) </span>loginValidation<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Validation pour la connexion
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middleware_validationMiddleware.js.html">middleware/validationMiddleware.js</a>, <a href="middleware_validationMiddleware.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="registerValidation"><span class="type-signature">(constant) </span>registerValidation<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Validation pour l'inscription d'un utilisateur
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middleware_validationMiddleware.js.html">middleware/validationMiddleware.js</a>, <a href="middleware_validationMiddleware.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="reservationValidation"><span class="type-signature">(constant) </span>reservationValidation<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Validation pour la création d'une réservation
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middleware_validationMiddleware.js.html">middleware/validationMiddleware.js</a>, <a href="middleware_validationMiddleware.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -104,7 +356,7 @@
     
 
     
-    <h4 class="name" id="addCatway"><span class="type-signature">(async) </span>addCatway<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="addCatway"><span class="type-signature">(async) </span>addCatway<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -148,10 +400,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -159,14 +416,33 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
+            <td class="description last">Requête Express contenant le body avec :
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>req.body.number</code></td>
+                <td class="name"><code>body.number</code></td>
             
 
             <td class="type">
@@ -189,7 +465,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.status</code></td>
+                <td class="name"><code>body.status</code></td>
             
 
             <td class="type">
@@ -212,7 +488,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.type</code></td>
+                <td class="name"><code>body.type</code></td>
             
 
             <td class="type">
@@ -232,13 +508,25 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -246,7 +534,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -345,7 +633,7 @@
     
 
     
-    <h4 class="name" id="addReservation"><span class="type-signature">(async) </span>addReservation<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="addReservation"><span class="type-signature">(async) </span>addReservation<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -389,10 +677,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -400,14 +693,33 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
+            <td class="description last">Requête Express contenant le body avec :
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>req.body.catwayId</code></td>
+                <td class="name"><code>body.catwayId</code></td>
             
 
             <td class="type">
@@ -430,7 +742,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.userId</code></td>
+                <td class="name"><code>body.userId</code></td>
             
 
             <td class="type">
@@ -453,7 +765,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.boatName</code></td>
+                <td class="name"><code>body.boatName</code></td>
             
 
             <td class="type">
@@ -476,7 +788,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.arrivalDate</code></td>
+                <td class="name"><code>body.arrivalDate</code></td>
             
 
             <td class="type">
@@ -499,7 +811,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.departureDate</code></td>
+                <td class="name"><code>body.departureDate</code></td>
             
 
             <td class="type">
@@ -522,7 +834,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body.status</code></td>
+                <td class="name"><code>body.status</code></td>
             
 
             <td class="type">
@@ -542,13 +854,25 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -556,7 +880,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -655,7 +979,7 @@
     
 
     
-    <h4 class="name" id="adminRequired"><span class="type-signature"></span>adminRequired<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id="adminRequired"><span class="type-signature"></span>adminRequired<span class="signature">(req, res, next)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -681,6 +1005,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -697,8 +1023,15 @@
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -706,15 +1039,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Requête Express (doit contenir req.user)</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>res</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -722,15 +1062,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>next</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
             
             </td>
 
@@ -738,7 +1085,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Fonction pour passer au middleware suivant</td>
         </tr>
 
     
@@ -837,7 +1184,95 @@
     
 
     
-    <h4 class="name" id="authRequired"><span class="type-signature"></span>authRequired<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id="apiFetch"><span class="type-signature"></span>apiFetch<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Requête fetch avec token et gestion des erreurs
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_js_common.js.html">public/js/common.js</a>, <a href="public_js_common.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="authRequired"><span class="type-signature"></span>authRequired<span class="signature">(req, res, next)</span><span class="type-signature"> &rarr; {void}</span></h4>
     
 
     
@@ -863,6 +1298,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -879,8 +1316,15 @@
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -888,15 +1332,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Requête Express</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>res</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -904,15 +1355,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>next</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
             
             </td>
 
@@ -920,7 +1378,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Fonction pour passer au middleware suivant</td>
         </tr>
 
     
@@ -1190,6 +1648,94 @@
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="clearToken"><span class="type-signature"></span>clearToken<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Supprime le token (déconnexion)
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_js_common.js.html">public/js/common.js</a>, <a href="public_js_common.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2906,7 +3452,7 @@
     
 
     
-    <h4 class="name" id="editCatway"><span class="type-signature">(async) </span>editCatway<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="editCatway"><span class="type-signature">(async) </span>editCatway<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -2950,10 +3496,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -2961,14 +3512,33 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
+            <td class="description last">Requête Express contenant :
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>req.params.id</code></td>
+                <td class="name"><code>params.id</code></td>
             
 
             <td class="type">
@@ -2991,7 +3561,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body</code></td>
+                <td class="name"><code>body</code></td>
             
 
             <td class="type">
@@ -3011,13 +3581,25 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3025,7 +3607,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -3124,7 +3706,7 @@
     
 
     
-    <h4 class="name" id="editReservation"><span class="type-signature">(async) </span>editReservation<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="editReservation"><span class="type-signature">(async) </span>editReservation<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -3168,10 +3750,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3179,14 +3766,33 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
+            <td class="description last">Requête Express contenant :
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>req.params.id</code></td>
+                <td class="name"><code>params.id</code></td>
             
 
             <td class="type">
@@ -3209,7 +3815,7 @@
 
         <tr>
             
-                <td class="name"><code>req.body</code></td>
+                <td class="name"><code>body</code></td>
             
 
             <td class="type">
@@ -3229,13 +3835,25 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3243,7 +3861,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -3501,7 +4119,7 @@
     
 
     
-    <h4 class="name" id="getCatways"><span class="type-signature">(async) </span>getCatways<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="getCatways"><span class="type-signature">(async) </span>getCatways<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -3527,6 +4145,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -3543,8 +4163,15 @@
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3552,15 +4179,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Requête Express</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>res</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3568,7 +4202,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -3806,7 +4440,7 @@
     
 
     
-    <h4 class="name" id="getReservations"><span class="type-signature">(async) </span>getReservations<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="getReservations"><span class="type-signature">(async) </span>getReservations<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -3832,6 +4466,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -3848,8 +4484,15 @@
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3857,15 +4500,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Requête Express</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>res</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -3873,7 +4523,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -3961,6 +4611,94 @@
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getToken"><span class="type-signature"></span>getToken<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Récupère le token stocké
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_js_common.js.html">public/js/common.js</a>, <a href="public_js_common.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4302,7 +5040,7 @@
     
 
     
-    <h4 class="name" id="login"><span class="type-signature">(async) </span>login<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="login"><span class="type-signature">(async) </span>login<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -4328,6 +5066,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -4344,8 +5084,15 @@
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4353,15 +5100,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Requête Express contenant le body avec email et password.</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>res</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4369,7 +5123,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express utilisée pour renvoyer le token.</td>
         </tr>
 
     
@@ -4497,7 +5251,7 @@
     
 
     
-    <h4 class="name" id="register"><span class="type-signature">(async) </span>register<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="register"><span class="type-signature">(async) </span>register<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -4523,6 +5277,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -4539,8 +5295,15 @@
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4548,15 +5311,22 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Requête Express contenant le body avec username, email, password et role.</td>
         </tr>
 
     
 
         <tr>
             
+                <td class="name"><code>res</code></td>
+            
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4564,7 +5334,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express utilisée pour renvoyer le résultat.</td>
         </tr>
 
     
@@ -4692,7 +5462,7 @@
     
 
     
-    <h4 class="name" id="removeCatway"><span class="type-signature">(async) </span>removeCatway<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="removeCatway"><span class="type-signature">(async) </span>removeCatway<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -4736,10 +5506,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4747,14 +5522,33 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
+            <td class="description last">Requête Express contenant :
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>req.params.id</code></td>
+                <td class="name"><code>params.id</code></td>
             
 
             <td class="type">
@@ -4774,13 +5568,25 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4788,7 +5594,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -4887,7 +5693,7 @@
     
 
     
-    <h4 class="name" id="removeReservation"><span class="type-signature">(async) </span>removeReservation<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="removeReservation"><span class="type-signature">(async) </span>removeReservation<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -4931,10 +5737,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>req</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4942,14 +5753,33 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
+            <td class="description last">Requête Express contenant :
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>req.params.id</code></td>
+                <td class="name"><code>params.id</code></td>
             
 
             <td class="type">
@@ -4969,13 +5799,25 @@
         </tr>
 
     
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>res</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
             
             </td>
 
@@ -4983,7 +5825,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Réponse Express</td>
         </tr>
 
     
@@ -5456,13 +6298,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addCatway">addCatway</a></li><li><a href="global.html#addReservation">addReservation</a></li><li><a href="global.html#adminRequired">adminRequired</a></li><li><a href="global.html#authRequired">authRequired</a></li><li><a href="global.html#checkPassword">checkPassword</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createCatway">createCatway</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteCatway">deleteCatway</a></li><li><a href="global.html#deleteReservation">deleteReservation</a></li><li><a href="global.html#deleteUser">deleteUser</a></li><li><a href="global.html#editCatway">editCatway</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#findUserByEmail">findUserByEmail</a></li><li><a href="global.html#getCatways">getCatways</a></li><li><a href="global.html#getDB">getDB</a></li><li><a href="global.html#getReservations">getReservations</a></li><li><a href="global.html#listCatways">listCatways</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listUsers">listUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#removeCatway">removeCatway</a></li><li><a href="global.html#removeReservation">removeReservation</a></li><li><a href="global.html#updateCatway">updateCatway</a></li><li><a href="global.html#updateReservation">updateReservation</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addCatway">addCatway</a></li><li><a href="global.html#addReservation">addReservation</a></li><li><a href="global.html#adminRequired">adminRequired</a></li><li><a href="global.html#apiFetch">apiFetch</a></li><li><a href="global.html#authRequired">authRequired</a></li><li><a href="global.html#catwayValidation">catwayValidation</a></li><li><a href="global.html#checkPassword">checkPassword</a></li><li><a href="global.html#clearToken">clearToken</a></li><li><a href="global.html#connectDB">connectDB</a></li><li><a href="global.html#createCatway">createCatway</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteCatway">deleteCatway</a></li><li><a href="global.html#deleteReservation">deleteReservation</a></li><li><a href="global.html#deleteUser">deleteUser</a></li><li><a href="global.html#editCatway">editCatway</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#findUserByEmail">findUserByEmail</a></li><li><a href="global.html#getCatways">getCatways</a></li><li><a href="global.html#getDB">getDB</a></li><li><a href="global.html#getReservations">getReservations</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#listCatways">listCatways</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listUsers">listUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginValidation">loginValidation</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#registerValidation">registerValidation</a></li><li><a href="global.html#removeCatway">removeCatway</a></li><li><a href="global.html#removeReservation">removeReservation</a></li><li><a href="global.html#reservationValidation">reservationValidation</a></li><li><a href="global.html#updateCatway">updateCatway</a></li><li><a href="global.html#updateReservation">updateReservation</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Sep 04 2025 21:30:47 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Jan 29 2026 12:54:13 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
